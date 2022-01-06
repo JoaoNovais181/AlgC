@@ -276,8 +276,7 @@ int maisLonga (GrafoL g, int or, int p[])
     BF(g, or, v, p2, l);
     int i = maxInd(l, NV);
 
-    p[0] = i;
-    for (int j = i, indx=1 ; j!=or ; j=p2[j], indx++) p[indx] = p2[j];
+    for (int j = l[i], aux=i ; j>0 ; p[j--]=aux, aux=p2[aux]);
 
     return l[i];
 }
