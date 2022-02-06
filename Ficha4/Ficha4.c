@@ -263,9 +263,9 @@ int BFcaminho (GrafoL g, int or, int v[], int p[], int l[], int nv)  // Breadth-
 
 int maxInd (int arr[], int N)
 {
-    int r = 0, m = arr[0];
+    int r = 0;
     for (int i=1 ; i<NV ; i++) 
-        if (arr[i]>m) { r = i; m = arr[i]; }
+        if (arr[i]>arr[r]) r = i;
 
     return r;
 }
@@ -276,10 +276,9 @@ int maisLonga (GrafoL g, int or, int p[])
     BF(g, or, v, p2, l);
     int i = maxInd(l, NV);
 
-    p[0] = i;
-    for (int j = i, indx=1 ; j!=or ; j=p2[j], indx++) p[indx] = p2[j];
+    for (int j = l[i], aux=i ; j>0 ; p[j--]=aux, aux=p2[aux]);
 
-    return max(l, NV);
+    return l[i];
 }
 
 void printarr (int arr[], int N)
